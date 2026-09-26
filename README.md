@@ -106,9 +106,10 @@ Alternatively, send a request manually to create a new order:
 **Body:**
 ```json
 {
-  "orderId": "ORD_1001",
-  "price": 250.0,
-  "quantity": 2
+  "orderId": "ORD_3",
+  "productName": "keyboard",
+  "quantity": 5,
+  "price": 2000
 }
 ```
 
