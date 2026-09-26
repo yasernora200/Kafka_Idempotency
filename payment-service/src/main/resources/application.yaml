@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: payment-service
+  datasource:
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      url: jdbc:sqlserver://localhost:1433;databaseName=bronze;encrypt=true;trustServerCertificate=true;
+      username: sa
+      password: Nora
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: payment-group
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+    listener:
+      ack-mode: MANUAL
+
+server:
+  port: 9292
