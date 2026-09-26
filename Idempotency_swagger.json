@@ -1,0 +1,73 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Kafka Ordering API",
+    "description": "API Documentation for Kafka Ordering & Event Processing",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:9191",
+      "description": "Local Server"
+    }
+  ],
+  "paths": {
+    "/orders/publish": {
+      "post": {
+        "tags": [
+          "order-controller"
+        ],
+        "summary": "Publish Order Event",
+        "operationId": "publishOrder",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "OrderRequest": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "example": "ORD_3"
+          },
+          "productName": {
+            "type": "string",
+            "example": "keyboard"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32",
+            "example": 5
+          },
+          "price": {
+            "type": "number",
+            "format": "double",
+            "example": 2000
+          }
+        },
+        "required": [
+          "orderId",
+          "productName",
+          "quantity",
+          "price"
+        ]
+      }
+    }
+  }
+}
